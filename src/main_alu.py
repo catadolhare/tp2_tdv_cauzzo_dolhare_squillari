@@ -11,6 +11,25 @@ def main():
 
 	# test file reading
 
+	servicios_retiro = []
+	servicios_tigre = []
+	ids = list(data["services"].keys())
+
+	for i in range(len(ids)):
+		origen = data["services"][ids[i]]["stops"][0]
+		destino = data["services"][ids[i]]["stops"][1]
+
+		if (origen["station"] == "Retiro" and destino["station"] == "Tigre"):
+			servicios_retiro.append((i+1, origen["time"], origen["type"], data["services"][ids[i]]["demand"]))
+			servicios_tigre.append((i+1, destino["time"], destino["type"], data["services"][ids[i]]["demand"]))
+		else:
+			servicios_tigre.append((i+1, origen["time"], origen["type"], data["services"][ids[i]]["demand"]))
+			servicios_retiro.append((i+1, destino["time"], destino["type"], data["services"][ids[i]]["demand"]))
+	
+
+	print("Retiro", servicios_retiro)
+	print("Tigre", servicios_tigre)
+'''
 	G = nx.DiGraph()
 
 	for service in data["services"]:
@@ -32,7 +51,7 @@ def main():
 	nx.draw(G, pos, with_labels=True, font_weight='bold', node_color =  node_colors, node_shape='s', node_size=700, edge_color=edges_colors, labels = node_labels)
 	print(G.nodes)
 	
-	plt.show()
+	plt.show()'''
 
 if __name__ == "__main__":
 	main()
