@@ -37,6 +37,7 @@ def main():
 	
 		l = data["services"][ids[i]]["demand"][0] / capacidad_vagon #cota inferior para cada servicio
 		arista = (origen["time"], destino["time"], {'capacity': u, 'cost': 0, 'demand': l})
+		print(arista)
 		aristas_servicios.append(arista)
 
 	nodos_retiro.sort()
@@ -44,16 +45,20 @@ def main():
 
 	for i in range(len(nodos_retiro) - 1):
 		arista = (nodos_retiro[i], nodos_retiro[i+1], {'capacity': float('inf'), 'cost': 0, 'demand': 0})
+		print(arista)
 		aristas_servicios.append(arista)
 	
 	for i in range(len(nodos_tigre) - 1):
 		arista = (nodos_tigre[i], nodos_tigre[i+1], {'capacity': float('inf'), 'cost': 0, 'demand': 0})
+		print(arista)
 		aristas_servicios.append(arista)
 
 	if nodos_retiro:
 		aristas_servicios.append((nodos_retiro[-1], nodos_retiro[0], {'capacity': float('inf'), 'cost': 1, 'demand': 0}))
+		print((nodos_retiro[-1], nodos_retiro[0], {'capacity': float('inf'), 'cost': 1, 'demand': 0}))
 	if nodos_tigre:
 		aristas_servicios.append((nodos_tigre[-1], nodos_tigre[0], {'capacity': float('inf'), 'cost': 1, 'demand': 0}))
+		print((nodos_tigre[-1], nodos_tigre[0], {'capacity': float('inf'), 'cost': 1, 'demand': 0}))
 
 
 	print("Retiro", servicios_retiro)
@@ -66,6 +71,8 @@ def main():
 	G.add_nodes_from(nodos_retiro, bipartite=0)
 	G.add_nodes_from(nodos_tigre, bipartite=1)
 	G.add_edges_from(aristas_servicios)
+	print(G.nodes)
+	print(G.edges)
 
 	pos = nx.bipartite_layout(G, nodes=nodos_retiro)
 
