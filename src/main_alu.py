@@ -19,6 +19,7 @@ def main():
 	u = data["rs_info"]["max_rs"]
 	capacidad_vagon = data["rs_info"]["capacity"]
 	aristas_servicios = []
+	imbalance = {}
 
 	for i in range(len(ids)):
 		origen = data["services"][ids[i]]["stops"][0]
@@ -27,7 +28,7 @@ def main():
 		if (origen["station"] == "Retiro" and destino["station"] == "Tigre"):
 			servicios_retiro.append((i+1, origen["time"], origen["type"], data["services"][ids[i]]["demand"]))
 			servicios_tigre.append((i+1, destino["time"], destino["type"], data["services"][ids[i]]["demand"]))
-			nodos_retiro.append(origen["time"])
+			nodos_retiro.append(origen["time"]) #ver lo del dos horarios iguales en diferentes estaciones
 			nodos_tigre.append(destino["time"])
 		else:
 			servicios_tigre.append((i+1, origen["time"], origen["type"], data["services"][ids[i]]["demand"]))
@@ -37,28 +38,32 @@ def main():
 	
 		l = data["services"][ids[i]]["demand"][0] / capacidad_vagon #cota inferior para cada servicio
 		arista = (origen["time"], destino["time"], {'capacity': u, 'cost': 0, 'demand': l})
-		print(arista)
 		aristas_servicios.append(arista)
+
+		if origen["time"] not in imbalance:
+			imbalance[origen["time"]] = 0
+		if destino["time"] not in imbalance:
+			imbalance[destino["time"]] = 0
+		imbalance[origen["time"]] += l
+		imbalance[destino["time"]] -= l
 
 	nodos_retiro.sort()
 	nodos_tigre.sort()
-
+#arista derecha tiene que tener imbalance positivo y la izquierda negativo (si envio de A a B). 
+#puedo enviar mas que el imbalance
+#
 	for i in range(len(nodos_retiro) - 1):
 		arista = (nodos_retiro[i], nodos_retiro[i+1], {'capacity': float('inf'), 'cost': 0, 'demand': 0})
-		print(arista)
 		aristas_servicios.append(arista)
 	
 	for i in range(len(nodos_tigre) - 1):
 		arista = (nodos_tigre[i], nodos_tigre[i+1], {'capacity': float('inf'), 'cost': 0, 'demand': 0})
-		print(arista)
 		aristas_servicios.append(arista)
 
 	if nodos_retiro:
 		aristas_servicios.append((nodos_retiro[-1], nodos_retiro[0], {'capacity': float('inf'), 'cost': 1, 'demand': 0}))
-		print((nodos_retiro[-1], nodos_retiro[0], {'capacity': float('inf'), 'cost': 1, 'demand': 0}))
 	if nodos_tigre:
 		aristas_servicios.append((nodos_tigre[-1], nodos_tigre[0], {'capacity': float('inf'), 'cost': 1, 'demand': 0}))
-		print((nodos_tigre[-1], nodos_tigre[0], {'capacity': float('inf'), 'cost': 1, 'demand': 0}))
 
 
 	print("Retiro", servicios_retiro)
@@ -71,14 +76,22 @@ def main():
 	G.add_nodes_from(nodos_retiro, bipartite=0)
 	G.add_nodes_from(nodos_tigre, bipartite=1)
 	G.add_edges_from(aristas_servicios)
-	print(G.nodes)
-	print(G.edges)
 
+	for node, imbal in imbalance.items():
+		G.nodes[node]['imbalance'] = imbal
 	pos = nx.bipartite_layout(G, nodes=nodos_retiro)
 
-	nx.draw(G, pos, with_labels=True, font_weight='bold')
+	labels = {node: f'{node}\n {imbal}' for node, imbal in imbalance.items()}
+
+	nx.draw(G, pos, with_labels=True, labels=labels, font_weight='bold')
 	
 	plt.show()
+
+	min_flow_cost= nx.min_cost_flow(G)
+	min_cost= nx.cost_of_flow(G, min_flow_cost)
+	print("Flujo de costo mínimo:", min_cost)
+	print("Flujo aristas:", min_flow_cost)
+
 '''
 	G = nx.DiGraph()
 
