@@ -2,8 +2,6 @@ import json
 import networkx as nx
 import math
 
-BIG_NUMBER = 1e10
-
 def main():
     #filename = "instances/toy_instance.json"
     filename = "instances/retiro-tigre-semana.json"
@@ -46,12 +44,12 @@ def main():
     nodos_tigre = sorted(set(nodos_tigre))
 
     for i in range(len(nodos_retiro) - 1):
-        G.add_edge(f"{nodos_retiro[i]}_Retiro", f"{nodos_retiro[i+1]}_Retiro", capacidad = BIG_NUMBER, costo = 0, tipo="traspaso")
+        G.add_edge(f"{nodos_retiro[i]}_Retiro", f"{nodos_retiro[i+1]}_Retiro", capacidad = float('inf'), costo = 0, tipo="traspaso")
     for i in range(len(nodos_tigre) - 1):
-        G.add_edge(f"{nodos_tigre[i]}_Tigre", f"{nodos_tigre[i+1]}_Tigre", capacidad = BIG_NUMBER, costo = 0, tipo = "traspaso")
+        G.add_edge(f"{nodos_tigre[i]}_Tigre", f"{nodos_tigre[i+1]}_Tigre", capacidad = float('inf'), costo = 0, tipo = "traspaso")
     
-    G.add_edge(f"{nodos_retiro[-1]}_Retiro", f"{nodos_retiro[0]}_Retiro", capacidad = BIG_NUMBER, costo = 1 , tipo = "trasnoche")
-    G.add_edge(f"{nodos_tigre[-1]}_Tigre", f"{nodos_tigre[0]}_Tigre", capacidad = BIG_NUMBER, costo = 1, tipo = "trasnoche")
+    G.add_edge(f"{nodos_retiro[-1]}_Retiro", f"{nodos_retiro[0]}_Retiro", capacidad = float('inf'), costo = 1 , tipo = "trasnoche")
+    G.add_edge(f"{nodos_tigre[-1]}_Tigre", f"{nodos_tigre[0]}_Tigre", capacidad = float('inf'), costo = 1, tipo = "trasnoche")
 
     min_flow_cost = nx.min_cost_flow(G,"demanda", "capacidad", "costo")
 
@@ -65,7 +63,7 @@ def main():
         print("Cantidad de vagones de ", u, " a ", v, ": ", min_flow_cost[u][v])
 
     min_cost = nx.cost_of_flow(G, min_flow_cost, "costo")
-    print(f"La cantidad total de vagones necesarios son {min_cost}: {vagones_necesarios_retiro} en Retiro y {vagones_necesarios_tigre} en Tigre")
+    print(f"La cantidad total de vagones necesarios son {vagones_necesarios_retiro + vagones_necesarios_tigre}: {vagones_necesarios_retiro} en Retiro y {vagones_necesarios_tigre} en Tigre")
     print("Costo minimo: ", min_cost)
 
 
