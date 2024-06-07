@@ -35,7 +35,7 @@ def main():
 	# test file reading
     
     G = nx.DiGraph()
-    ids = ids = list(data["services"].keys())
+    ids = list(data["services"].keys())
     capacidad_vagon = data["rs_info"]["capacity"]
     u = data["rs_info"]["max_rs"]
     nodos_origen = []
