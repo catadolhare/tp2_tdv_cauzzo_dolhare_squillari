@@ -1,4 +1,5 @@
-{"services": {"101": {"stops": [{"time": 410, "station": "Av.Maipu", "type": "D"}, {"time": 435, "station": "Delta", "type": "A"}], "demand": [500]}, 
+{"services": 
+{"101": {"stops": [{"time": 410, "station": "Av.Maipu", "type": "D"}, {"time": 435, "station": "Delta", "type": "A"}], "demand": [500]}, 
 "103": {"stops": [{"time": 440, "station": "Av.Maipu", "type": "D"}, {"time": 465, "station": "Delta", "type": "A"}], "demand": [500]}, 
 "105": {"stops": [{"time": 460, "station": "Av.Maipu", "type": "D"}, {"time": 485, "station": "Delta", "type": "A"}], "demand": [500]}, 
 "107": {"stops": [{"time": 480, "station": "Av.Maipu", "type": "D"}, {"time": 505, "station": "Delta", "type": "A"}], "demand": [500]}, 
@@ -77,5 +78,5 @@
 "174": {"stops": [{"time": 1180, "station": "Delta", "type": "D"}, {"time": 1205, "station": "Av.Maipu", "type": "A"}], "demand": [500]}, 
 "176": {"stops": [{"time": 1200, "station": "Delta", "type": "D"}, {"time": 1225, "station": "Av.Maipu", "type": "A"}], "demand": [500]}, 
 "178": {"stops": [{"time": 1220, "station": "Delta", "type": "D"}, {"time": 1245, "station": "Av.Maipu", "type": "A"}], "demand": [500]}, 
-"180": {"stops": [{"time": 1250, "station": "Delta", "type": "D"}, {"time": 1275, "station": "Av.Maipu", "type": "A"}], "demand": [500]}
-}, "stations": ["Av.Maipu", "Delta"], "cost_per_unit": {"Av.Maipu": 1.0, "Delta": 1.0}, "rs_info": {"capacity": 100, "max_rs": 10}}
+"180": {"stops": [{"time": 1250, "station": "Delta", "type": "D"}, {"time": 1275, "station": "Av.Maipu", "type": "A"}], "demand": [500]}}, 
+"stations": ["Av.Maipu", "Delta"], "cost_per_unit": {"Av.Maipu": 1.0, "Delta": 1.0}, "rs_info": {"capacity": 100, "max_rs": 10}}
