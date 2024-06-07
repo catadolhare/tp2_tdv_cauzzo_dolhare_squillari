@@ -7,7 +7,7 @@ def main():
     print("1. Retiro - Tigre")
     print("2. Villa Ballester - Zarate")
     print("3. Victoria - Los Cardales")
-    print("4. Maipu - Delta")
+    print("4. Moreno - Mercedes")
     input_viaje = input()
     estacion_origen = ""
     estacion_destino = ""
@@ -25,9 +25,9 @@ def main():
         estacion_origen = "Victoria"
         estacion_destino = "Los Cardales"
     elif input_viaje == "4":
-        filename = "instances/maipu-delta-semana.json"
-        estacion_origen = "Av.Maipu"
-        estacion_destino = "Delta"
+        filename = "instances/moreno_mercedes.json"
+        estacion_origen = "Moreno"
+        estacion_destino = "Mercedes"
 
     with open(filename) as json_file:
         data = json.load(json_file)

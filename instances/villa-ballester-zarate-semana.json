@@ -23,4 +23,4 @@
 "2538": {"stops": [{"time": 1358, "station": "Zarate", "type": "D"}, {"time": 1448, "station": "Villa Ballester", "type": "A"}], "demand": [500]}},
 "stations": ["Villa Ballester", "Zarate"],
 "cost_per_unit": {"Villa Ballester": 1.0, "Zarate": 1.0}, 
-"rs_info": {"capacity": 100, "max_rs": 500}}
+"rs_info": {"capacity": 100, "max_rs": 200}}
