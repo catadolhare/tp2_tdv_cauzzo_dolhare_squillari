@@ -3,15 +3,16 @@ import networkx as nx
 import math
 
 def main():
+    '''
     print("Seleccione un viaje:")
     print("1. Retiro - Tigre")
     print("2. Villa Ballester - Zarate")
     print("3. Victoria - Los Cardales")
     print("4. Moreno - Mercedes")
-    input_viaje = input()
+    input_viaje = input()'''
     estacion_origen = ""
     estacion_destino = ""
-
+    '''
     if input_viaje == "1":
         filename = "instances/retiro-tigre-semana.json"
         estacion_origen = "Retiro"
@@ -27,7 +28,11 @@ def main():
     elif input_viaje == "4":
         filename = "instances/moreno_mercedes.json"
         estacion_origen = "Moreno"
-        estacion_destino = "Mercedes"
+        estacion_destino = "Mercedes"'''
+    
+    filename = "instances/poco_villa_ballester_mucho_zarate.json"
+    estacion_origen = "Villa Ballester"
+    estacion_destino = "Zarate"
 
     with open(filename) as json_file:
         data = json.load(json_file)
