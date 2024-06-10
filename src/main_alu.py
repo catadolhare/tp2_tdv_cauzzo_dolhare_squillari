@@ -31,13 +31,11 @@ def main():
 
     with open(filename) as json_file:
         data = json.load(json_file)
-
-	# test file reading
     
-    G = nx.DiGraph()
-    ids = list(data["services"].keys())
-    capacidad_vagon = data["rs_info"]["capacity"]
-    u = data["rs_info"]["max_rs"]
+    G = nx.DiGraph() #creamos grafo para representar el servicio
+    ids = list(data["services"].keys()) #obtenemos los ids de los servicios
+    capacidad_vagon = data["rs_info"]["capacity"] #guardamos la capacidad de los vagones
+    u = data["rs_info"]["max_rs"] #guardamos la cantidad maxima de vagones que puede mandar el servicio
     nodos_origen = []
     nodos_destino = []
 
