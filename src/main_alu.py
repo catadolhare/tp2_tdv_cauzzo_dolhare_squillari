@@ -30,9 +30,9 @@ def main():
         estacion_origen = "Moreno"
         estacion_destino = "Mercedes"'''
     
-    filename = "instances/retiro_tigre_hora_pico.json"
-    estacion_origen = "Villa Ballester"
-    estacion_destino = "Zarate"
+    filename = "instances/todo_tigre.json"
+    estacion_origen = "Retiro"
+    estacion_destino = "Tigre"
 
     with open(filename) as json_file:
         data = json.load(json_file)
@@ -62,10 +62,12 @@ def main():
 
     for nodo in G.nodes():
         if G.nodes[nodo]["station"] == estacion_origen:
+            print('entro')
             nodos_origen.append(G.nodes[nodo]["time"])
         else:
             nodos_destino.append(G.nodes[nodo]["time"])
-
+    print(nodos_origen)
+    print(nodos_destino)
     nodos_origen = sorted(set(nodos_origen))
     nodos_destino = sorted(set(nodos_destino))
 
