@@ -30,7 +30,7 @@ def main():
         estacion_origen = "Moreno"
         estacion_destino = "Mercedes"'''
     
-    filename = "instances/poco_villa_ballester_mucho_zarate.json"
+    filename = "instances/retiro_tigre_hora_pico.json"
     estacion_origen = "Villa Ballester"
     estacion_destino = "Zarate"
 
