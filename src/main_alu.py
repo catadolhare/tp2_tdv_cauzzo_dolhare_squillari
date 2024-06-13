@@ -30,7 +30,7 @@ def main():
         estacion_origen = "Moreno"
         estacion_destino = "Mercedes"'''
     
-    filename = "instances/todo_tigre.json"
+    filename = "nuevas_instances/retiro-tigre/retiro_tigre_capacidad_50.json"
     estacion_origen = "Retiro"
     estacion_destino = "Tigre"
 
@@ -55,19 +55,24 @@ def main():
 
         l = math.ceil(data["services"][ids[i]]["demand"][0]/capacidad_vagon)
 
-        G.add_node(f"{nodo_origen_time}_{nodo_origen_station}", time = nodo_origen_time, station = nodo_origen_station, demanda = l)
-        G.add_node(f"{nodo_destino_time}_{nodo_destino_station}", time = nodo_destino_time, station = nodo_destino_station, demanda = -l)
+        if G.has_node(f"{nodo_origen_time}_{nodo_origen_station}"):
+            G.nodes[f"{nodo_origen_time}_{nodo_origen_station}"]["demanda"] += l
+        else:
+            G.add_node(f"{nodo_origen_time}_{nodo_origen_station}", time = nodo_origen_time, station = nodo_origen_station, demanda = l)
+        
+        if G.has_node(f"{nodo_destino_time}_{nodo_destino_station}"):
+            G.nodes[f"{nodo_destino_time}_{nodo_destino_station}"]["demanda"] -= l
+        else:
+            G.add_node(f"{nodo_destino_time}_{nodo_destino_station}", time = nodo_destino_time, station = nodo_destino_station, demanda = -l)
 
         G.add_edge(f"{nodo_origen_time}_{nodo_origen_station}", f"{nodo_destino_time}_{nodo_destino_station}", capacidad = u-l, costo = 0, tipo = "tren")
 
     for nodo in G.nodes():
         if G.nodes[nodo]["station"] == estacion_origen:
-            print('entro')
             nodos_origen.append(G.nodes[nodo]["time"])
         else:
             nodos_destino.append(G.nodes[nodo]["time"])
-    print(nodos_origen)
-    print(nodos_destino)
+
     nodos_origen = sorted(set(nodos_origen))
     nodos_destino = sorted(set(nodos_destino))
 
@@ -76,8 +81,8 @@ def main():
     for i in range(len(nodos_destino) - 1):
         G.add_edge(f"{nodos_destino[i]}_{estacion_destino}", f"{nodos_destino[i+1]}_{estacion_destino}", capacidad = float('inf'), costo = 0, tipo = "traspaso")
     
-    G.add_edge(f"{nodos_origen[-1]}_{estacion_origen}", f"{nodos_origen[0]}_{estacion_origen}", capacidad = float('inf'), costo = 1 , tipo = "trasnoche")
-    G.add_edge(f"{nodos_destino[-1]}_{estacion_destino}", f"{nodos_destino[0]}_{estacion_destino}", capacidad = float('inf'), costo = 1, tipo = "trasnoche")
+    G.add_edge(f"{nodos_origen[-1]}_{estacion_origen}", f"{nodos_origen[0]}_{estacion_origen}", capacidad = 25, costo = 1 , tipo = "trasnoche")
+    G.add_edge(f"{nodos_destino[-1]}_{estacion_destino}", f"{nodos_destino[0]}_{estacion_destino}", capacidad = 25, costo = 1, tipo = "trasnoche")
 
     min_flow_cost = nx.min_cost_flow(G,"demanda", "capacidad", "costo")
 
@@ -91,7 +96,7 @@ def main():
         print("Cantidad de vagones de ", u, " a ", v, ": ", min_flow_cost[u][v])
 
     min_cost = nx.cost_of_flow(G, min_flow_cost, "costo")
-    print(f"La cantidad total de vagones necesarios son {vagones_necesarios_origen + vagones_necesarios_destino}: {vagones_necesarios_origen} en {estacion_origen} y {vagones_necesarios_destino} en {estacion_destino}")
+    print(f"La cantidad total de vagones necesarios son {min_cost}: {vagones_necesarios_origen} en {estacion_origen} y {vagones_necesarios_destino} en {estacion_destino}")
     print("Costo minimo: ", min_cost)
 
 

@@ -1,0 +1,8 @@
+{"services":
+{"2701": {"stops": [{"time": 125, "station": "Victoria", "type": "D"}, {"time": 220, "station": "Los Cardales", "type": "A"}], "demand": [500]},
+"2702": {"stops": [{"time": 220, "station": "Los Cardales", "type": "D"}, {"time": 315, "station": "Victoria", "type": "A"}], "demand": [700]},
+"2703": {"stops": [{"time": 315, "station": "Victoria", "type": "D"}, {"time": 410, "station": "Los Cardales", "type": "A"}], "demand": [600]},
+"2704": {"stops": [{"time": 410, "station": "Los Cardales", "type": "D"}, {"time": 505, "station": "Victoria", "type": "A"}], "demand": [400]}},
+"stations": ["Los Cardales", "Victoria"],
+"cost_per_unit": {"Mercedes": 1.0, "Moreno": 1.0}, 
+"rs_info": {"capacity": 100, "max_rs": 1000}}

@@ -1,0 +1,7 @@
+{"services":
+{"1": {"stops": [{"time": 1, "station": "A", "type": "D"}, {"time": 3, "station": "B", "type": "A"}], "demand": [300]},
+"2": {"stops": [{"time": 2, "station": "A", "type": "D"}, {"time": 5, "station": "B", "type": "A"}], "demand": [400]},
+"3": {"stops": [{"time": 4, "station": "B", "type": "D"}, {"time": 6, "station": "A", "type": "A"}], "demand": [400]}},
+"stations": ["Los Cardales", "Victoria"],
+"cost_per_unit": {"A": 1.0, "B": 1.0}, 
+"rs_info": {"capacity": 100, "max_rs": 1000}}
