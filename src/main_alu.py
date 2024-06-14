@@ -81,8 +81,8 @@ def main():
     for i in range(len(nodos_destino) - 1):
         G.add_edge(f"{nodos_destino[i]}_{estacion_destino}", f"{nodos_destino[i+1]}_{estacion_destino}", capacidad = float('inf'), costo = 0, tipo = "traspaso")
     
-    G.add_edge(f"{nodos_origen[-1]}_{estacion_origen}", f"{nodos_origen[0]}_{estacion_origen}", capacidad = 25, costo = 1 , tipo = "trasnoche")
-    G.add_edge(f"{nodos_destino[-1]}_{estacion_destino}", f"{nodos_destino[0]}_{estacion_destino}", capacidad = 25, costo = 1, tipo = "trasnoche")
+    G.add_edge(f"{nodos_origen[-1]}_{estacion_origen}", f"{nodos_origen[0]}_{estacion_origen}", capacidad = float('inf'), costo = 1 , tipo = "trasnoche")
+    G.add_edge(f"{nodos_destino[-1]}_{estacion_destino}", f"{nodos_destino[0]}_{estacion_destino}", capacidad = float('inf'), costo = 1, tipo = "trasnoche")
 
     min_flow_cost = nx.min_cost_flow(G,"demanda", "capacidad", "costo")
 
