@@ -30,7 +30,7 @@ def main():
         estacion_origen = "Moreno"
         estacion_destino = "Mercedes"'''
     
-    filename = "nuevas_instances/toy/toy_frecuencia_10min.json"
+    filename = "nuevas_instances/toy/toy_demandas_200_100.json"
     estacion_origen = "Retiro"
     estacion_destino = "Tigre"
 
