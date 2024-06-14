@@ -9,10 +9,10 @@ def main():
     print("2. Villa Ballester - Zarate")
     print("3. Victoria - Los Cardales")
     print("4. Moreno - Mercedes")
-    input_viaje = input()'''
+    input_viaje = input()
     estacion_origen = ""
     estacion_destino = ""
-    '''
+    
     if input_viaje == "1":
         filename = "instances/retiro-tigre-semana.json"
         estacion_origen = "Retiro"
@@ -30,7 +30,7 @@ def main():
         estacion_origen = "Moreno"
         estacion_destino = "Mercedes"'''
     
-    filename = "nuevas_instances/retiro-tigre/retiro_tigre_capacidad_50.json"
+    filename = "nuevas_instances/toy/toy_frecuencia_10min.json"
     estacion_origen = "Retiro"
     estacion_destino = "Tigre"
 
