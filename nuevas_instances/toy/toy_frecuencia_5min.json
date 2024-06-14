@@ -1,0 +1,12 @@
+{"services": 
+{"1": {"stops": [{"time": 289, "station": "Retiro", "type": "D"}, {"time": 343, "station": "Tigre", "type": "A"}], "demand": [250]}, 
+"2": {"stops": [{"time": 294, "station": "Retiro", "type": "D"}, {"time": 348, "station": "Tigre", "type": "A"}], "demand": [250]},
+"3": {"stops": [{"time": 299, "station": "Retiro", "type": "D"}, {"time": 353, "station": "Tigre", "type": "A"}], "demand": [250]},
+"4": {"stops": [{"time": 304, "station": "Retiro", "type": "D"}, {"time": 358, "station": "Tigre", "type": "A"}], "demand": [250]},
+"5": {"stops": [{"time": 246, "station": "Tigre", "type": "D"}, {"time": 300, "station": "Retiro", "type": "A"}], "demand": [250]}, 
+"6": {"stops": [{"time": 251, "station": "Tigre", "type": "D"}, {"time": 296, "station": "Retiro", "type": "A"}], "demand": [250]},  
+"7": {"stops": [{"time": 256, "station": "Tigre", "type": "D"}, {"time": 310, "station": "Retiro", "type": "A"}], "demand": [250]}, 
+"8": {"stops": [{"time": 261, "station": "Tigre", "type": "D"}, {"time": 315, "station": "Retiro", "type": "A"}], "demand": [250]}},
+"stations": ["Tigre", "Retiro"],
+"cost_per_unit": {"Tigre": 1.0, "Retiro": 1.0}, 
+"rs_info": {"capacity": 100, "max_rs": 25}}

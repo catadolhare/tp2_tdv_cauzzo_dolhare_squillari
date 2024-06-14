@@ -9,10 +9,10 @@ def main():
     print("2. Villa Ballester - Zarate")
     print("3. Victoria - Los Cardales")
     print("4. Moreno - Mercedes")
-    input_viaje = input()'''
+    input_viaje = input()
     estacion_origen = ""
     estacion_destino = ""
-    '''
+    
     if input_viaje == "1":
         filename = "instances/retiro-tigre-semana.json"
         estacion_origen = "Retiro"
@@ -30,7 +30,7 @@ def main():
         estacion_origen = "Moreno"
         estacion_destino = "Mercedes"'''
     
-    filename = "nuevas_instances/retiro-tigre/retiro_tigre_capacidad_50.json"
+    filename = "nuevas_instances/toy/toy_frecuencia_60min.json"
     estacion_origen = "Retiro"
     estacion_destino = "Tigre"
 
@@ -81,8 +81,8 @@ def main():
     for i in range(len(nodos_destino) - 1):
         G.add_edge(f"{nodos_destino[i]}_{estacion_destino}", f"{nodos_destino[i+1]}_{estacion_destino}", capacidad = float('inf'), costo = 0, tipo = "traspaso")
     
-    G.add_edge(f"{nodos_origen[-1]}_{estacion_origen}", f"{nodos_origen[0]}_{estacion_origen}", capacidad = 25, costo = 1 , tipo = "trasnoche")
-    G.add_edge(f"{nodos_destino[-1]}_{estacion_destino}", f"{nodos_destino[0]}_{estacion_destino}", capacidad = 25, costo = 1, tipo = "trasnoche")
+    G.add_edge(f"{nodos_origen[-1]}_{estacion_origen}", f"{nodos_origen[0]}_{estacion_origen}", capacidad = float('inf'), costo = 1 , tipo = "trasnoche")
+    G.add_edge(f"{nodos_destino[-1]}_{estacion_destino}", f"{nodos_destino[0]}_{estacion_destino}", capacidad = float('inf'), costo = 1, tipo = "trasnoche")
 
     min_flow_cost = nx.min_cost_flow(G,"demanda", "capacidad", "costo")
 
