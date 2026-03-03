@@ -3,8 +3,36 @@ import networkx as nx
 import math
 
 def main():
-    filename = "instances/victoria-cardales/victoria_cardales_semana.json"
+    '''
+    print("Seleccione un viaje:")
+    print("1. Retiro - Tigre")
+    print("2. Villa Ballester - Zarate")
+    print("3. Victoria - Los Cardales")
+    print("4. Moreno - Mercedes")
+    input_viaje = input()
+    estacion_origen = ""
+    estacion_destino = ""
     
+    if input_viaje == "1":
+        filename = "instances/retiro-tigre-semana.json"
+        estacion_origen = "Retiro"
+        estacion_destino = "Tigre"
+    elif input_viaje == "2":
+        filename = "instances/villa-ballester-zarate-semana.json"
+        estacion_origen = "Villa Ballester"
+        estacion_destino = "Zarate"
+    elif input_viaje == "3":
+        filename = "instances/victoria-los-cardales-semana.json"
+        estacion_origen = "Victoria"
+        estacion_destino = "Los Cardales"
+    elif input_viaje == "4":
+        filename = "instances/moreno_mercedes.json"
+        estacion_origen = "Moreno"
+        estacion_destino = "Mercedes"'''
+    
+    filename = "nuevas_instances/toy/toy_frecuencia_10min.json"
+    estacion_origen = "Retiro"
+    estacion_destino = "Tigre"
 
     with open(filename) as json_file:
         data = json.load(json_file)
