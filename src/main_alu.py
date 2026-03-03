@@ -3,7 +3,7 @@ import networkx as nx
 import math
 
 def main():
-    filename = "instances/retiro-tigre/retiro_tigre_semana.json"
+    filename = "instances/victoria-cardales/victoria_cardales_semana.json"
     
 
     with open(filename) as json_file:
